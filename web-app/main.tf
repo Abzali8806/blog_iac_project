@@ -62,6 +62,8 @@ resource "aws_dynamodb_table" "terraform_locks" {
 module "web_app_1" {
   source = "../web-app-module"
 
-  az_one = "eu-west-2a"
-  az_two = "eu-west-2c"
+  az_one        = "eu-west-2a"
+  az_two        = "eu-west-2c"
+  ami           = "ami-0aaa5410833273cfe"
+  instance_size = "t3.micro"
 }
