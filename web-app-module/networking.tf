@@ -33,3 +33,11 @@ resource "aws_subnet" "public_subnet2" {
 
   tags = local.tags
 }
+
+resource "aws_subnet" "private_subnet" {
+  vpc_id            = aws_vpc.web_blog_vpc.id
+  cidr_block        = "10.27.0.0/24"
+  availability_zone = var.az_one
+
+  tags = local.tags
+}
