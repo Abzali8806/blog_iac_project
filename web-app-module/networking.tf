@@ -36,7 +36,7 @@ resource "aws_subnet" "public_subnet2" {
 
 resource "aws_subnet" "private_subnet" {
   vpc_id            = aws_vpc.web_blog_vpc.id
-  cidr_block        = "10.27.0.0/24"
+  cidr_block        = "10.27.1.0/24"
   availability_zone = var.az_one
 
   tags = local.tags
