@@ -19,46 +19,6 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_s3_bucket" "tf_state_bucket" {
-  bucket        = "terraform-state-iac250223"
-  force_destroy = true
-  versioning {
-    enabled = true
-  }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "tf_state_encryption" {
-  bucket = aws_s3_bucket.tf_state_bucket.id
-
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
-  }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "terraform-state-lock"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "LockID"
-  attribute {
-    name = "LockID"
-    type = "S"
-  }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
 module "web_app_1" {
   source = "../web-app-module"
 
@@ -66,4 +26,6 @@ module "web_app_1" {
   az_two        = "eu-west-2c"
   ami           = "ami-0aaa5410833273cfe"
   instance_size = "t3.micro"
+  ssh_key       = var.pub_ssh_key
+
 }
