@@ -13,3 +13,13 @@ variable "ami" {
   default     = "ami-0aaa5410833273cfe"
   description = "EC2 instance ubuntu machine image"
 }
+variable "instance_size" {
+  type        = string
+  default     = "t2.micro"
+  description = "EC2 instance size : t3 family"
+}
+
+variable "ssh_key" {
+  type = string
+  description = "public ssh key used by ansible"
+}
