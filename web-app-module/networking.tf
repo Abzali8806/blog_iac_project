@@ -12,12 +12,6 @@ resource "aws_vpc" "web_blog_vpc" {
   tags = local.network_tags
 }
 
-output "vpc_id" {
-  # create variable in external modules to use this elsewhere
-  description = "outputs vpcID"
-  value       = aws_vpc.web_blog_vpc.id
-}
-
 resource "aws_internet_gateway" "pub_tf_igw" {
   vpc_id = aws_vpc.web_blog_vpc.id
 
@@ -65,6 +59,9 @@ resource "aws_subnet" "public_subnet2" {
 
   tags = local.network_tags
 }
+
+
+
 
 
 # Network ACLs

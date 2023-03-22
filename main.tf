@@ -20,7 +20,7 @@ provider "aws" {
 }
 
 module "web_app_1" {
-  source = "../web-app-module"
+  source = "./web-app-module"
 
   az_one        = "eu-west-2a"
   az_two        = "eu-west-2c"
@@ -29,3 +29,17 @@ module "web_app_1" {
   ssh_key       = var.pub_ssh_key
 
 }
+
+
+
+
+
+
+
+# module "postgres_db" {
+#   source = "../backend-postgres-db"
+  
+#   vpc_id = module.web_app_1.vpc_id
+#   az_one        = "eu-west-2a"
+#   az_two        = "eu-west-2c"
+# }
